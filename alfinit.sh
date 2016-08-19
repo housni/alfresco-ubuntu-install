@@ -59,7 +59,8 @@ fi
 
 # This variable is populated in the module files.
 # It's an associative array of all the URLs for the packages we need.
-# Associatve arrays in Bash? Yeah, I know, there are better tools for this but we are using Bash.
+# Associatve arrays in Bash? Yeah, I know, there are better tools for this but
+# we are using Bash.
 declare -A PACKAGE_URLS
 
 # Path to our downloaded includes.
@@ -113,7 +114,8 @@ Install.scripts() {
   shift 2
   for file in "$@"
   do
-      wget --output-document="$path/$file" "$LOFTUXAB_BASE_URL/scripts/$segment/includes/$file"
+      wget --output-document="$path/$file" \
+           "$LOFTUXAB_BASE_URL/scripts/alfresco/$segment/$file"
       . "$path/$file"
   done
 }
@@ -125,10 +127,10 @@ Package.required curl
 # Create our drectories to house our scripts.
 sudo mkdir -p "$LOFTUXAB_INSTALL_PATH"/scripts/alfresco/{includes,modules}
 
-# Download our includes.
+# Download and source our includes.
 Install.scripts includes $PATH_INCLUDES out.sh io.sh
 
-# Download our modules.
+# Download and source our modules.
 Install.scripts modules $PATH_MODULES "${LOFTUXAB_MODULES[@]}"
 
 mkdir $TEMP_DIR && cd $TEMP_DIR
