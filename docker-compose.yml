@@ -1,0 +1,36 @@
+version: '2'
+services:
+
+  alfresco:
+    build:
+      context: ./
+    volumes:
+      - ./:/src/alfresco
+    networks:
+      loftuxab:
+        ipv4_address: 172.16.240.10
+        ipv6_address: 2001:3984:3989::10
+
+  mysql:
+    image: mysql
+    env_file:
+      - ./.docker/mysql.env
+    volumes:
+      - ./.docker/data:/var/lib/mysql
+    networks:
+      loftuxab:
+        ipv4_address: 172.16.240.20
+        ipv6_address: 2001:3984:3989::20
+
+networks:
+  loftuxab:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.240.0/24
+        gateway: 172.16.240.1
+      - subnet: 2001:3984:3989::/64
+        gateway: 2001:3984:3989::1
