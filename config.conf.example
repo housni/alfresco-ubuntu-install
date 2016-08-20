@@ -1,7 +1,7 @@
 # Branch name to pull from server.
-LOFTUXAB_BRANCH=experimental
+LOFTUXAB_BRANCH=housni/experimental
 
-LOFTUXAB_BASE_URL=https://raw.githubusercontent.com/loftuxab/alfresco-ubuntu-install/$LOFTUXAB_BRANCH
+LOFTUXAB_BASE_URL=https://raw.githubusercontent.com/housni/alfresco-ubuntu-install/$LOFTUXAB_BRANCH
 
 LOFTUXAB_INSTALL_PATH=/opt/alfresco
 
